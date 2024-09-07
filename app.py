@@ -51,7 +51,7 @@ def satir_guncelle(barkod):
 
         def dosya_kaydet():
             global dosya_yolu
-            if dosya_yolu:  # Eğer dosya yolu varsa
+            if dosya_yolu:
                 df.to_excel(dosya_yolu, index=False)
                 messagebox.showinfo("Başarılı", "Dosya başarıyla kaydedildi.")
             else:
@@ -64,7 +64,7 @@ def satir_guncelle(barkod):
         dialog.title("Veri Güncelle")
         dialog.geometry("500x400")
 
-        # Kaydırma çerçevesi
+        
         canvas = tk.Canvas(dialog)
         scrollbar = tk.Scrollbar(dialog, orient="vertical", command=canvas.yview)
         frame = tk.Frame(canvas)
@@ -75,7 +75,7 @@ def satir_guncelle(barkod):
         scrollbar.pack(side="right", fill="y")
         canvas.configure(yscrollcommand=scrollbar.set)
 
-        # Giriş alanları
+        
         entry_dict = {}
         for idx, (kolon, deger) in enumerate(satir_verileri.items()):
             tk.Label(frame, text=kolon).grid(row=idx, column=0, padx=10, pady=5)
@@ -84,7 +84,7 @@ def satir_guncelle(barkod):
             entry.insert(0, str(deger))
             entry_dict[kolon] = entry
 
-        # Butonlar
+        
         buton_frame = tk.Frame(frame)
         buton_frame.grid(row=len(satir_verileri), columnspan=2, pady=20)
 
@@ -94,19 +94,19 @@ def satir_guncelle(barkod):
     else:
         messagebox.showerror("Hata", "Barkod bulunamadı!")
 
-# Ana uygulama penceresini oluştur
+
 root = tk.Tk()
 root.title("NMSExcel")
 root.geometry("600x600")
 
-# Logo
+
 logo = tk.PhotoImage(file="logo.png")
 logo_label = tk.Label(root, image=logo)
 logo_label.pack(pady=20)
 
-# Excel Seç butonu
+
 excel_butonu = GradyanButon(root, renk1="#4CAF50", renk2="#45A049", text="Excel Seç", command=excel_sec, width=15, height=5)
 excel_butonu.pack(pady=20)
 
-# Uygulamayı çalıştır
+
 root.mainloop()
